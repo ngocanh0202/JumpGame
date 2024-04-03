@@ -41,6 +41,8 @@ public class HandleChemicalReac : HighMonoBehaviour
     };
     protected void Explode(){
         Debug.Log("Explode");
+        UiManager.Instance.UpdateStatus("Explode");
+        MusicManager.Instance.PlayMusic("Explore");
         float vectoX = Random.Range(-1f, 1f);
         float vectoY = 1f;
         Vector2 direction = new Vector2(vectoX, vectoY);
@@ -53,11 +55,13 @@ public class HandleChemicalReac : HighMonoBehaviour
 
     protected void Melting(){
         Debug.Log("Melting");
+        UiManager.Instance.UpdateStatus("Melting");
         receiveDamage.AddDamage(10f);
         StartCoroutine(_IEtimeReact(timeMelting));
     }
     protected void Frozen(float _timeReact){
         Debug.Log("Frozen");
+        UiManager.Instance.UpdateStatus("Frozen");
         playerController.Player_rigidbody2D.velocity = Vector2.zero;
         PreventMovement();
         timeFrozen = _timeReact;
@@ -65,6 +69,7 @@ public class HandleChemicalReac : HighMonoBehaviour
     }
     protected void Poisoned(float _timeReact){
         Debug.Log("Poisoned: " + _timeReact);
+        UiManager.Instance.UpdateStatus("Poisoned");
         timePoisoned = _timeReact;
         StartCoroutine(DecreaseHPDuringTimeReact(timePoisoned));
     }
@@ -87,10 +92,12 @@ public class HandleChemicalReac : HighMonoBehaviour
             elapsedTime += 1f;
         }
         receiveDebug.gameObject.SetActive(true);
+        UiManager.Instance.UpdateStatus("Normal");
     }
     protected IEnumerator _IEtimeReact(float _timeReact){
         yield return new WaitForSeconds(_timeReact);
         receiveDebug.gameObject.SetActive(true);
+        UiManager.Instance.UpdateStatus("Normal");
         AllowMovement();
     }
     protected void PreventMovement(){

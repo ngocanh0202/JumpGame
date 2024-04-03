@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletName: Buttlet_ice
   damage: 11
-  speed: 15
+  speed: 12
   distance: 30
   debug: 3
   type_bullet: 2
-  countDown: 11
+  countDown: 7

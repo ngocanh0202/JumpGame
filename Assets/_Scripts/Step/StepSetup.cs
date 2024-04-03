@@ -36,7 +36,7 @@ public class StepSetup : HighMonoBehaviour
     {
         base.LoadComponents();
         rangeHeigh = 2.15f;
-        rangeWidth = 11f;
+        rangeWidth = 10f;
         currentX = rangeWidth;
         spawnerLimit = 5;
 

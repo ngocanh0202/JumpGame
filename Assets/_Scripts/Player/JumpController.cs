@@ -8,6 +8,7 @@ public class JumpController : HighMonoBehaviour
     [Header("Jump")]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] public bool isGround;
+    [SerializeField] Vector3 targetGround;
     [Header("Gravity")]
     [SerializeField] Vector2 verGravity;
     [SerializeField] float fallMultiplier;
@@ -22,19 +23,29 @@ public class JumpController : HighMonoBehaviour
     }
     void FixedUpdate()
     {
+        isGround = IsGround();
+        MakePlayerStandingInGround();
         Jumpbehavior();
     
     }
+    void MakePlayerStandingInGround(){
+        if(isGround){
+            playerController.Player_rigidbody2D.velocity = new Vector2(playerController.Player_rigidbody2D.velocity.x, 0);
+            playerController.transform.position = new Vector3(playerController.transform.position.x, (targetGround.y - 0.1f) + playerController.Player_collider2D.bounds.extents.y, playerController.transform.position.z);
+        }
+    }
     void Jumpbehavior(){
-        isGround = IsGround();
+        
         JumpInput();
         isJumping();
     }
     void JumpInput(){
         float jumpInput = InputManager.Instance.JumpInput;
         if(jumpInput > 0 && isGround && playerController.CanJump){
+            MusicManager.Instance.PlayMusic("Jump");
             float vetorX = playerController.Player_rigidbody2D.velocity.x;
             playerController.Player_rigidbody2D.velocity = new Vector2(vetorX, playerController.JumpPower);
+
         }
     }
     public void isJumping(){
@@ -56,6 +67,7 @@ public class JumpController : HighMonoBehaviour
             rayColor = Color.green;
         }
         Debug.DrawRay(playerBoxCenter, Vector3.down * (_distanceToTheGround + 0.1f), rayColor);
+        targetGround = raycastHit2D.point;
 
         return raycastHit2D.collider != null;
     }

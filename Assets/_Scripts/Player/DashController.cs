@@ -28,13 +28,15 @@ public class DashController : HighMonoBehaviour
         float vetorY = InputManager.Instance.VerticalInput;
         // Check if the player can dash
         if(shiftInput && canDash && playerController.CanDash){
+            MusicManager.Instance.PlayMusic("Dash");
+
             canDash = false;
             isDashing = true;
-
             dashDirection = new Vector2(vetorX, vetorY).normalized;
             if(dashDirection == Vector2.zero){
                 dashDirection = new Vector2(0,0).normalized;
             }
+            
             StartCoroutine(StopDashTime());
         }
         // Check if the player is dashing

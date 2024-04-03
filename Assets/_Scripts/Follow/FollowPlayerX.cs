@@ -26,7 +26,10 @@ public class FollowPlayerX : Follow
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            UiManager.Instance.ReStartGame();
+            EffectPlayerDeath(other);
         }
+    }
+    private void EffectPlayerDeath(Collider2D player){
+        player.gameObject.GetComponent<PlayerController>().PlayerDeath();
     }
 }

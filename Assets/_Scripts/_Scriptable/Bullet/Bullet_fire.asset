@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bullet_fire
   m_EditorClassIdentifier: 
   bulletName: Buttlet_fire
-  damage: 10
+  damage: 15
   speed: 20
   distance: 70
   debug: 2

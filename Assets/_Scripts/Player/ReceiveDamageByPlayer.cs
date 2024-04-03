@@ -16,11 +16,12 @@ public class ReceiveDamageByPlayer : ReceiveDamage
         UiManager.Instance.UpdateHp(playerController.CurrentHP, playerController.MaxHP);
         if(playerController.CurrentHP <= 0){
             Die();
+            
         }
     }
     public override void Die(){
         Debug.Log("Player died!");
-        EnemyRandomAttack.Instance.SetUpAttack(); // Pass a float value as an argument
-        UiManager.Instance.ReStartGame();
+        EnemyRandomAttack.Instance.SetUpAttack(); 
+        playerController.PlayerDeath();
     }
 }

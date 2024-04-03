@@ -25,6 +25,9 @@ public class StepController : HighMonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if(score > 0){
+                MusicManager.Instance.PlayMusic("Increase Score");
+            }
             GetSendDebug(other,debug);
             StepSetup._Instance.ActionSetAndDespawn(transform.gameObject);
             ScoreManager._Instance.AddScore(score);

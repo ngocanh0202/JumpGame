@@ -34,7 +34,7 @@ public class EnemyRandomAttack : HighMonoBehaviour
         player_transform = GameObject.Find("Player").transform;
         
         time_start = 0.5f;
-        time_repeting = 2.25f;
+        time_repeting = 2f;
         // Start attacking
         InvokeRepeating("RandomAttack", time_start, time_repeting);
 

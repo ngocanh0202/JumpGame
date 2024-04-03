@@ -49,7 +49,7 @@ namespace Manager.InputManager
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Debug.Log("Press key Esc");
-                UiManager.Instance.TriggerGameManager();
+                UiManager.Instance.TriggerMenu();
             }
         }
     }

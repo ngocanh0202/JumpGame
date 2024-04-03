@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Buttlet_water
   m_EditorClassIdentifier: 
   bulletName: Buttlet_water
-  damage: 13
+  damage: 10
   speed: 15
   distance: 40
   debug: 4
   type_bullet: 3
-  countDown: 13
+  countDown: 8

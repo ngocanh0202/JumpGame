@@ -22,9 +22,9 @@ public class PlayerController : HighMonoBehaviour
     [SerializeField] private float maxHP;
     [SerializeField] private float currentHP;
 
-    public Rigidbody2D Player_rigidbody2D { get => player_rigidbody2D;}
-    public BoxCollider2D Player_collider2D { get => player_collider2D;}
-    public Transform HandleChemicalReac { get => handleChemicalReac;}
+    public Rigidbody2D Player_rigidbody2D { get => player_rigidbody2D; }
+    public BoxCollider2D Player_collider2D { get => player_collider2D; }
+    public Transform HandleChemicalReac { get => handleChemicalReac; }
     public float Speed { get => speed; set => speed = value; }
     public float DashPower { get => dashPower; set => dashPower = value; }
     public float JumpPower { get => jumpPower; set => jumpPower = value; }
@@ -39,14 +39,15 @@ public class PlayerController : HighMonoBehaviour
     // Start is called before the first frame update
     protected override void LoadComponents()
     {
-        try{
+        try
+        {
             player_rigidbody2D = GetComponent<Rigidbody2D>();
             player_collider2D = GetComponent<BoxCollider2D>();
             handleChemicalReac = transform.Find("ChemicalReac");
             receiveDebug = transform.Find("ReceiveDebug");
             receiveDamage = transform.Find("ReceiveDamage");
             playerMovement = transform.Find("PlayerMovement");
-            
+
             speed = 13f;
             dashPower = 17f;
             jumpPower = 15f;
@@ -57,8 +58,25 @@ public class PlayerController : HighMonoBehaviour
             canDash = true;
             canJump = true;
         }
-        catch(System.Exception e){
+        catch (System.Exception e)
+        {
             Debug.LogError("PlayerController.cs: " + e.Message);
         }
+    }
+    public void PlayerDeath()
+    {
+        canMove = false;
+        canDash = false;
+        canJump = false;
+
+        float x = 0;
+        float y = 1;
+        player_rigidbody2D.velocity = new Vector2(x, y) * jumpPower;
+        MusicManager.Instance.PlayMusic("Death");
+        StartCoroutine(WaitPlayerDeath());
+    }
+    private IEnumerator WaitPlayerDeath(){
+        yield return new WaitForSeconds(0.4f);
+        UiManager.Instance.DisableScoreMenu();
     }
 }

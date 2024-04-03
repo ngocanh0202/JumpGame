@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bullet_posion
   m_EditorClassIdentifier: 
   bulletName: Buttlet_posion
-  damage: 12
+  damage: 9
   speed: 15
-  distance: 20
+  distance: 35
   debug: 1
   type_bullet: 0
-  countDown: 12
+  countDown: 15

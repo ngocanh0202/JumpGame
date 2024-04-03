@@ -87,28 +87,30 @@ public class ReceiveDebug : HighMonoBehaviour
     }
     protected virtual IEnumerator Bleed(){
         //Debug.Log("Bleed");
-        playerController.MaxHP -= 10;
-        UiManager.Instance.UpdateHp(playerController.CurrentHP, playerController.MaxHP);
+        //UiManager.Instance.UpdateStatus("Bleed");
         yield return new WaitForSeconds(_countDown);
         ResetDebug();
         
     }
     protected virtual IEnumerator Burn(){
         //Debug.Log("Burn");
+        //UiManager.Instance.UpdateStatus("Burn");
         playerController.Speed = _speed * 2;
         yield return new WaitForSeconds(_countDown);
         ResetDebug();
     }
     protected virtual IEnumerator Slow(){
         //Debug.Log("Slow");
+        //UiManager.Instance.UpdateStatus("Slow");
         playerController.Speed /= 1.5f;
         playerController.DashPower /= 1.5f;
-        playerController.JumpPower /= 1.5f;
+        playerController.JumpPower -= 1.5f;
         yield return new WaitForSeconds(_countDown);
         ResetDebug();
     }
     protected virtual IEnumerator Wet(){ 
         //Debug.Log("Wet");
+        //UiManager.Instance.UpdateStatus("Wet");
         yield return new WaitForSeconds(_countDown);  
         ResetDebug();
     }
@@ -185,6 +187,7 @@ public class ReceiveDebug : HighMonoBehaviour
         playerController.JumpPower = _jumpPower;
         playerController.Speed = _speed;
 
+        //UiManager.Instance.UpdateStatus("Normal");
     }   
 
 }
