@@ -78,8 +78,7 @@ public class ReceiveDebug : HighMonoBehaviour
         }
        
 
-        debugName = bulletDebug.ToString();
-        StartCoroutine(debugName);
+        
 
         currentDebug = bulletDebug;
         AddDebug(currentDebug);
@@ -117,6 +116,8 @@ public class ReceiveDebug : HighMonoBehaviour
     protected virtual void AddDebug(BulletDebug bulletDebug){
         BulletDebug oldDebug = Checkdebug();
         if(oldDebug == bulletDebug) return;
+        debugName = bulletDebug.ToString();
+        StartCoroutine(debugName);
         if(oldDebug != BulletDebug.noDebug){
            CheckReaction(oldDebug, bulletDebug);
            RemoveDebugs(bulletDebug);

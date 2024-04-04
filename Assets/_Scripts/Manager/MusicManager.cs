@@ -44,5 +44,14 @@ public class MusicManager : HighMonoBehaviour
         }
         audio.source.Play();
     }
+    public void PauseMusic(string name){
+        Audio audio = audioList.Find(x => x.name == name);
+        if (audio == null)
+        {
+            Debug.LogWarning("There is no music with the name " + name);
+            return;
+        }
+        audio.source.Pause();
+    }
 
 }
