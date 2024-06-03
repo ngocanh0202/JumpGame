@@ -113,7 +113,9 @@ public class UiManager : HighMonoBehaviour
     public void UpdateHp(float hp, float maxHp)
     {
         hp_slider.maxValue = maxHp;
-        hp_slider.value = hp;
+        if(hp <= maxHp){
+            hp_slider.value = hp;
+        }
     }
     
     public void TriggerMenu()

@@ -12,11 +12,14 @@ public class ReceiveDamageByPlayer : ReceiveDamage
         currentHealth = maxhealth;
     }
     public override void AddDamage(float damage){
-        playerController.CurrentHP -= damage;
-        UiManager.Instance.UpdateHp(playerController.CurrentHP, playerController.MaxHP);
-        if(playerController.CurrentHP <= 0){
-            Die();
-            
+        float currentHP = playerController.CurrentHP -= damage;
+        if(currentHP > playerController.MaxHP){
+            return;
+        }
+        playerController.CurrentHP = currentHP;
+        UiManager.Instance.UpdateHp(currentHP, maxhealth);
+        if(currentHP <= 0){
+            Die();    
         }
     }
     public override void Die(){
